@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Song Recommender</title>
+  </head>
+  <body>
+    <form method="POST">
+      <label for="user_id">Enter your User ID:</label>
+      <input type="text" id="user_id" name="user_id" /><br /><br />
+
+      <label for="listened_songs">Choose songs you have heard before: </label>
+      <select name="listened_songs" id="listened_songs">
+        {% for song in all_songs %}
+        <option value="{{ song }}">{{ song }}</option>
+        {% endfor %}</select
+      ><br /><br />
+
+      <input type="submit" value="Get recommendations" />
+    </form>
+
+    {% if recommendations %}
+    <h2>Recommendations:</h2>
+    <ul>
+      {% for recommendation in recommendations %}
+      <li>
+        {{ recommendation.title }} by {{ recommendation.artist_name }} from the
+        album "{{ recommendation.release }}" released in {{ recommendation.year
+        }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
